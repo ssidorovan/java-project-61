@@ -1,5 +1,6 @@
 package hexlet.code.games;
 
+import hexlet.code.Engine;
 import hexlet.code.Greet;
 import java.util.Scanner;
 
@@ -11,33 +12,26 @@ public class Even {
         System.out.println("Answer 'yes' if the number is even, otherwise answer 'no'.");
 
         int count = 0;
-        int numAnswerCorrect = 3;
-        while (count < numAnswerCorrect) {
-
-            int randomNumber = getRandomNumber();
-
-            System.out.println("Question: " + randomNumber);
-            System.out.print("Your answer: ");
+        while (count < Engine.numRound) {
+            int randomNum = Engine.getRandomNum();
+            String randomNumber = Integer.toString(randomNum);
+            Engine.getQuestion(randomNumber);
             String answerUser = scanner.next();
-            String answerCorrect = test(randomNumber);
+            String answerCorrect = test(randomNum);
 
             if (answerUser.equals(answerCorrect)) {
-                System.out.println("Correct!");
+                Engine.correct();
                 count++;
             } else {
-                System.out.println("'" + answerUser + "'" + " is wrong answer ;(. Correct answer was " + "'" + answerCorrect + "'.");
-                System.out.println("Let's try again, " + userName + "!");
+                Engine.wrong(answerUser, answerCorrect,userName);
                 return;
             }
         }
-        System.out.println("Congratulations, " + userName + "!");
+        Engine.congratulations(userName);
         scanner.close();
     }
-    public static int getRandomNumber() {
-        int max = 10000;
-        return (int) (Math.random() * max);
-    }
+
     public static String test(int number) {
-        return number % 2 == 0 ? "yes" : "no";
+         return number % 2 == 0 ? "yes" : "no";
     }
 }
