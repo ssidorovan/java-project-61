@@ -5,4 +5,6 @@
 
 Greet: https://asciinema.org/a/cCQ6JDCSEf1nVewc9Sjs0oGhJ
 
-Even: https://asciinema.org/a/FiTPcu9aesmAZFnVPojsNecc
+Even: https://asciinema.org/a/FiTPcu9aesmAZFnVPojsNeccP
+
+Calc: https://asciinema.org/a/vzbQ32cLCCLqcQGgA45R4AFUS
