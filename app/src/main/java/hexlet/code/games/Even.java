@@ -13,7 +13,7 @@ public class Even {
 
         int count = 0;
         while (count < Engine.numRound) {
-            int randomNum = Engine.getRandomNum();
+            int randomNum = Engine.getRandomNum(Engine.minRandomNum, Engine.maxRandomNum);
             String randomNumber = Integer.toString(randomNum);
             Engine.getQuestion(randomNumber);
             String answerUser = scanner.next();
@@ -23,7 +23,7 @@ public class Even {
                 Engine.correct();
                 count++;
             } else {
-                Engine.wrong(answerUser, answerCorrect,userName);
+                Engine.wrong(answerUser, answerCorrect, userName);
                 return;
             }
         }
@@ -32,6 +32,6 @@ public class Even {
     }
 
     public static String test(int number) {
-         return number % 2 == 0 ? "yes" : "no";
+        return number % 2 == 0 ? "yes" : "no";
     }
 }

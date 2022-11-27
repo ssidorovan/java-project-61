@@ -12,8 +12,8 @@ public class GCD {
 
         int count = 0;
         while (count < Engine.numRound) {
-            int randomNum1 = Engine.getRandomNum();
-            int randomNum2 = Engine.getRandomNum();
+            int randomNum1 = Engine.getRandomNum(Engine.minRandomNum, Engine.maxRandomNum);
+            int randomNum2 = Engine.getRandomNum(Engine.minRandomNum, Engine.maxRandomNum);
             Engine.getQuestion(randomNum1 + " "  + randomNum2);
             String answerUser = scanner.next();
             String answerCorrect = Integer.toString(test(randomNum1, randomNum2));
@@ -29,18 +29,15 @@ public class GCD {
         Engine.congratulations(userName);
         scanner.close();
     }
-    
+
     public static int test(int num1, int num2) {
         if (num1 == 0) {
             return num2;
-        }
-        else if (num2 == 0) {
+        } else if (num2 == 0) {
             return num1;
-        }
-        else if (num1 >= num2) {
+        } else if (num1 >= num2) {
             return test(num1 % num2, num2);
-        }
-        else {
+        } else {
             return test(num1, num2 % num1);
         }
     }
