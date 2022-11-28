@@ -11,9 +11,9 @@ public class GCD {
         System.out.println("Find the greatest common divisor of given numbers.");
 
         int count = 0;
-        while (count < Engine.numRound) {
-            int randomNum1 = Engine.getRandomNum(Engine.minRandomNum, Engine.maxRandomNum);
-            int randomNum2 = Engine.getRandomNum(Engine.minRandomNum, Engine.maxRandomNum);
+        while (count < Engine.getNumRound()) {
+            int randomNum1 = Engine.getRandomNum(Engine.getMinRandomNum(), Engine.getMaxRandomNum());
+            int randomNum2 = Engine.getRandomNum(Engine.getMinRandomNum(), Engine.getMaxRandomNum());
             Engine.getQuestion(randomNum1 + " "  + randomNum2);
             String answerUser = scanner.next();
             String answerCorrect = Integer.toString(test(randomNum1, randomNum2));

@@ -12,8 +12,8 @@ public class Prime {
         System.out.println("Answer 'yes' if given number is prime. Otherwise answer 'no'.");
 
         int count = 0;
-        while (count < Engine.numRound) {
-            int randomNum = Engine.getRandomNum(Engine.minRandomNum, Engine.maxRandomNum);
+        while (count < Engine.getNumRound()) {
+            int randomNum = Engine.getRandomNum(Engine.getMinRandomNum(), Engine.getMaxRandomNum());
             String randomNumber = Integer.toString(randomNum);
             Engine.getQuestion(randomNumber);
             String answerUser = scanner.next();

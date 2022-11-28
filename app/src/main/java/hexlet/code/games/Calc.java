@@ -5,7 +5,10 @@ import hexlet.code.Greet;
 import java.util.Scanner;
 
 public class Calc {
-
+    static final int SUM_OPERATOR = 0;
+    static final int DIFF_OPERATOR = 1;
+    static final int MULT_OPERATOR = 2;
+    static final int MAX_NUM = 3;
     public static void game() {
 
         String userName = Greet.greeting();
@@ -14,9 +17,9 @@ public class Calc {
         System.out.println("What is the result of the expression?");
 
         int count = 0;
-        while (count < Engine.numRound) {
-            int randomNum1 = Engine.getRandomNum(Engine.minRandomNum, Engine.maxRandomNum);
-            int randomNum2 = Engine.getRandomNum(Engine.minRandomNum, Engine.maxRandomNum);
+        while (count < Engine.getNumRound()) {
+            int randomNum1 = Engine.getRandomNum(Engine.getMinRandomNum(), Engine.getMaxRandomNum());
+            int randomNum2 = Engine.getRandomNum(Engine.getMinRandomNum(), Engine.getMaxRandomNum());
             String randomOperator = getRandomOperator2();
             Engine.getQuestion(randomNum1 + " " + randomOperator + " " + randomNum2);
             String answerUser = scanner.next();
@@ -35,11 +38,12 @@ public class Calc {
     }
 
     public static String getRandomOperator2() {
-        int num = Engine.getRandomNum(1, 3);
+        int num = Engine.getRandomNum(Engine.getMinRandomNum(), MAX_NUM);
+
         return switch (num) {
-            case 1 -> "-";
-            case 2 -> "*";
-            case 3 -> "+";
+            case SUM_OPERATOR -> "+";
+            case DIFF_OPERATOR -> "-";
+            case MULT_OPERATOR -> "*";
             default -> null;
         };
     }

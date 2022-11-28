@@ -5,6 +5,10 @@ import hexlet.code.Greet;
 import java.util.Scanner;
 
 public class Progression {
+    static final int MIN_LENGTH = 6;
+    static final int MAX_LENGTH = 10;
+    static final int MAX_STEP = 8;
+    static final int MAX_START_NUM = 9;
 
     public static void game() {
         String userName = Greet.greeting();
@@ -13,7 +17,7 @@ public class Progression {
         System.out.println("What number is missing in the progression?");
 
         int count = 0;
-        while (count < Engine.numRound) {
+        while (count < Engine.getNumRound()) {
             int[] progressionRandom = getRandomProgression();
             int elementHidden = elementRandom(progressionRandom);
             String progression = progressionWithElementHidden(progressionRandom, elementHidden);
@@ -34,10 +38,11 @@ public class Progression {
     }
 
     public static int[] getRandomProgression() {
-        int length = Engine.getRandomNum(6, 10);
+
+        int length = Engine.getRandomNum(MIN_LENGTH, MAX_LENGTH);
         int[] arrays = new int[length];
-        int step = Engine.getRandomNum(2, 8);
-        int startNum = Engine.getRandomNum(1, 9);
+        int step = Engine.getRandomNum(Engine.getMinRandomNum(), MAX_STEP);
+        int startNum = Engine.getRandomNum(Engine.getMinRandomNum(), MAX_START_NUM);
         for (int i = 0; i < arrays.length; i++) {
             arrays[i] = startNum + i * step;
         }
