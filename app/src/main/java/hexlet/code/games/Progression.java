@@ -55,14 +55,15 @@ public class Progression {
     }
 
     public static String progressionWithElementHidden(int[] progression, int element) {
-        StringBuilder result = new StringBuilder();
-        for (int j : progression) {
-            if (j == element) {
-                result.append("..").append(" ");
+        String result = "";
+        for (int i =0; i < progression.length; i++) {
+            int num = progression[i];
+            if (num == element) {
+                result = result + ".." + " ";
             } else {
-                result.append(j).append(" ");
+                result = result + num + " ";
             }
         }
-        return result.toString();
+        return result;
     }
 }
