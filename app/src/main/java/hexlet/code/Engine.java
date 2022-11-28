@@ -1,9 +1,19 @@
 package hexlet.code;
 
 public class Engine {
-    public static int maxRandomNum = 150;
-    public static int minRandomNum = 0;
-    public static int numRound = 3;
+    private static final int MAX_RANDOM_NUM = 150;
+    private static final int MIN_RANDOM_NUM = 0;
+    private static final int NUM_RANDOM = 3;
+
+    public static int getMaxRandomNum() {
+        return MAX_RANDOM_NUM;
+    }
+    public static int getMinRandomNum() {
+        return MIN_RANDOM_NUM;
+    }
+    public static int getNumRound() {
+        return NUM_RANDOM;
+    }
 
     public static void getQuestion(String value) {
         System.out.println("Question: " + value);
