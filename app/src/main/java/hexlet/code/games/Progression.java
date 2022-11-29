@@ -5,8 +5,8 @@ import hexlet.code.Greet;
 import java.util.Scanner;
 
 public class Progression {
-    static final int MIN_LENGTH = 6;
-    static final int MAX_LENGTH = 10;
+
+    static final int LENGTH_PROGRESSION = 10;
     static final int MIN_NUM = 0;
     static final int MAX_NUM = 10;
 
@@ -18,12 +18,12 @@ public class Progression {
 
         int count = 0;
         while (count < Engine.getNumRound()) {
-            int[] progressionRandom = getRandomProgression();
-            int elementHidden = elementRandom(progressionRandom);
+            String[] progressionRandom = getRandomProgression();
+            String elementHidden = elementRandom(progressionRandom);
             String progression = progressionWithElementHidden(progressionRandom, elementHidden);
             Engine.getQuestion(progression);
             String answerUser = scanner.next();
-            String answerCorrect = Integer.toString(elementHidden);
+            String answerCorrect = elementHidden;
 
             if (answerUser.equals(answerCorrect)) {
                 Engine.correct();
@@ -37,32 +37,30 @@ public class Progression {
         scanner.close();
     }
 
-    public static int[] getRandomProgression() {
+    public static String[] getRandomProgression() {
 
-        int length = Engine.getRandomNum(MIN_LENGTH, MAX_LENGTH);
-        int[] arrays = new int[length];
+        String[] arrays = new String[LENGTH_PROGRESSION];
         int step = Engine.getRandomNum(MIN_NUM, MAX_NUM);
         int startNum = Engine.getRandomNum(MIN_NUM, MAX_NUM);
         for (int i = 0; i < arrays.length; i++) {
-            arrays[i] = startNum + i * step;
+            arrays[i] = Integer.toString(startNum + i * step);
         }
         return arrays;
     }
-
-    public static int elementRandom(int[] arrays) {
+    public static String elementRandom(String[] arrays) {
         int index = Engine.getRandomNum(0, arrays.length - 1);
         return arrays[index];
     }
 
-    public static String progressionWithElementHidden(int[] progression, int element) {
-        StringBuilder result = new StringBuilder();
-        for (int i : progression) {
-            if (i == element) {
-                result.append("..").append(" ");
+    public static String progressionWithElementHidden(String[] arrays, String element) {
+        String[] array = new String[arrays.length];
+        for (var i = 0; i < arrays.length; i++) {
+            if (arrays[i].equals(element)) {
+                array[i] = "..";
             } else {
-                result.append(i).append(" ");
+                array[i] = arrays[i];
             }
         }
-        return result.toString();
+        return String.join(" ", array);
     }
 }
