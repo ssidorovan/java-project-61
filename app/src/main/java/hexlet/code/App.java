@@ -26,12 +26,12 @@ public class App {
 
         switch (choiceUser) {
             case "0" -> System.out.println("Exit");
-            case "1" -> Greet.greeting();
-            case "2" -> Even.game();
-            case "3" -> Calc.game();
-            case "4" -> GCD.game();
-            case "5" -> Progression.game();
-            case "6" -> Prime.game();
+            case "1" -> Cli.greeting();
+            case "2" -> Even.runGame();
+            case "3" -> Calc.runGame();
+            case "4" -> GCD.runGame();
+            case "5" -> Progression.runGame();
+            case "6" -> Prime.runGame();
             default -> System.out.println("Error, try again");
         }
         scanner.close();
