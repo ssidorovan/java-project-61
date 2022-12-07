@@ -13,7 +13,6 @@ public class Progression {
 
     public static void runGame() {
         String[][] roundsData = new String[Engine.NUM_ROUND][2];
-
         for (int i = 0;  i < Engine.NUM_ROUND; i++) {
             roundsData[i] = dataGame();
         }
