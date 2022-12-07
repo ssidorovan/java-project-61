@@ -1,34 +1,28 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
-import hexlet.code.Greet;
-import java.util.Scanner;
+import hexlet.code.Utils;
 
 public class Prime {
-    public static void game() {
-        String userName = Greet.greeting();
-        Scanner scanner = new Scanner(System.in);
+    static final int MIN_RANDOM = 0;
+    static final int MAX_RANDOM = 150;
+    static final String TASK_GAME = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
+    public static void runGame() {
+        String[][] roundsData = new String[Engine.NUM_ROUND][2];
 
-        System.out.println("Answer 'yes' if given number is prime. Otherwise answer 'no'.");
-
-        int count = 0;
-        while (count < Engine.getNumRound()) {
-            int randomNum = Engine.getRandomNum(Engine.getMinRandomNum(), Engine.getMaxRandomNum());
-            String randomNumber = Integer.toString(randomNum);
-            Engine.getQuestion(randomNumber);
-            String answerUser = scanner.next();
-            String answerCorrect = test(randomNum);
-
-            if (answerUser.equals(answerCorrect)) {
-                Engine.correct();
-                count++;
-            } else {
-                Engine.wrong(answerUser, answerCorrect, userName);
-                return;
-            }
+        for (int i = 0;  i < Engine.NUM_ROUND; i++) {
+            roundsData[i] = dataGame();
         }
-        Engine.congratulations(userName);
-        scanner.close();
+        Engine.run(roundsData, TASK_GAME);
+    }
+
+    public static String[] dataGame() {
+        int randomNum = Utils.generateNumber(MIN_RANDOM, MAX_RANDOM);
+        String randomNumber = Integer.toString(randomNum);
+        String question = randomNumber;
+        String answerCorrect = test(randomNum);
+
+        return new String[]{question, answerCorrect};
     }
 
     public static String test(int number) {

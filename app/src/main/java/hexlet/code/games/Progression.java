@@ -1,8 +1,7 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
-import hexlet.code.Greet;
-import java.util.Scanner;
+import hexlet.code.Utils;
 
 public class Progression {
     static final int MIN_LENGTH = 6;
@@ -10,39 +9,33 @@ public class Progression {
     static final int MIN_NUM = 0;
     static final int MAX_NUM = 10;
 
-    public static void game() {
-        String userName = Greet.greeting();
-        Scanner scanner = new Scanner(System.in);
+    static final String TASK_GAME = "What number is missing in the progression?";
 
-        System.out.println("What number is missing in the progression?");
+    public static void runGame() {
+        String[][] roundsData = new String[Engine.NUM_ROUND][2];
 
-        int count = 0;
-        while (count < Engine.getNumRound()) {
-            int[] progressionRandom = getRandomProgression();
-            int elementHidden = elementRandom(progressionRandom);
-            String progression = progressionWithElementHidden(progressionRandom, elementHidden);
-            Engine.getQuestion(progression);
-            String answerUser = scanner.next();
-            String answerCorrect = Integer.toString(elementHidden);
-
-            if (answerUser.equals(answerCorrect)) {
-                Engine.correct();
-                count++;
-            } else {
-                Engine.wrong(answerUser, answerCorrect, userName);
-                return;
-            }
+        for (int i = 0;  i < Engine.NUM_ROUND; i++) {
+            roundsData[i] = dataGame();
         }
-        Engine.congratulations(userName);
-        scanner.close();
+        Engine.run(roundsData, TASK_GAME);
+    }
+
+    public static String[] dataGame() {
+        int[] progressionRandom = getRandomProgression();
+        int elementHidden = elementRandom(progressionRandom);
+        String progression = progressionWithElementHidden(progressionRandom, elementHidden);
+        String question = progression;
+        String answerCorrect = Integer.toString(elementHidden);
+
+        return new String[]{question, answerCorrect};
     }
 
     public static int[] getRandomProgression() {
 
-        int length = Engine.getRandomNum(MIN_LENGTH, MAX_LENGTH);
+        int length = Utils.generateNumber(MIN_LENGTH, MAX_LENGTH);
         int[] arrays = new int[length];
-        int step = Engine.getRandomNum(MIN_NUM, MAX_NUM);
-        int startNum = Engine.getRandomNum(MIN_NUM, MAX_NUM);
+        int step = Utils.generateNumber(MIN_NUM, MAX_NUM);
+        int startNum = Utils.generateNumber(MIN_NUM, MAX_NUM);
         for (int i = 0; i < arrays.length; i++) {
             arrays[i] = startNum + i * step;
         }
@@ -50,7 +43,7 @@ public class Progression {
     }
 
     public static int elementRandom(int[] arrays) {
-        int index = Engine.getRandomNum(0, arrays.length - 1);
+        int index = Utils.generateNumber(0, arrays.length - 1);
         return arrays[index];
     }
 

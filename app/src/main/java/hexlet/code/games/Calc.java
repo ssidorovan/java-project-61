@@ -1,44 +1,37 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
-import hexlet.code.Greet;
-import java.util.Scanner;
+import hexlet.code.Utils;
 
 public class Calc {
     static final int SUM_OPERATOR = 0;
     static final int DIFF_OPERATOR = 1;
     static final int MULT_OPERATOR = 2;
     static final int MAX_NUM = 3;
-    public static void game() {
+    static final int MIN_RANDOM = 0;
+    static final int MAX_RANDOM = 150;
+    static final String TASK_GAME = "What is the result of the expression?";
+    public static void runGame() {
+        String[][] roundsData = new String[Engine.NUM_ROUND][2];
 
-        String userName = Greet.greeting();
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("What is the result of the expression?");
-
-        int count = 0;
-        while (count < Engine.getNumRound()) {
-            int randomNum1 = Engine.getRandomNum(Engine.getMinRandomNum(), Engine.getMaxRandomNum());
-            int randomNum2 = Engine.getRandomNum(Engine.getMinRandomNum(), Engine.getMaxRandomNum());
-            String randomOperator = getRandomOperator2();
-            Engine.getQuestion(randomNum1 + " " + randomOperator + " " + randomNum2);
-            String answerUser = scanner.next();
-            String answerCorrect = test(randomNum1, randomNum2, randomOperator);
-
-            if (answerUser.equals(answerCorrect)) {
-                Engine.correct();
-                count++;
-            } else {
-                Engine.wrong(answerUser, answerCorrect, userName);
-                return;
-            }
+        for (int i = 0;  i < Engine.NUM_ROUND; i++) {
+            roundsData[i] = dataGame();
         }
-        Engine.congratulations(userName);
-        scanner.close();
+        Engine.run(roundsData, TASK_GAME);
+    }
+
+    public static String[] dataGame() {
+        int randomNum1 = Utils.generateNumber(MIN_RANDOM, MAX_RANDOM);
+        int randomNum2 = Utils.generateNumber(MIN_RANDOM, MAX_RANDOM);
+        String randomOperator = getRandomOperator2();
+        String question = randomNum1 + " " + randomOperator + " " + randomNum2;
+        String answerCorrect = test(randomNum1, randomNum2, randomOperator);
+
+        return new String[]{question, answerCorrect};
     }
 
     public static String getRandomOperator2() {
-        int num = Engine.getRandomNum(Engine.getMinRandomNum(), MAX_NUM);
+        int num = Utils.generateNumber(MIN_RANDOM, MAX_NUM);
 
         return switch (num) {
             case SUM_OPERATOR -> "+";

@@ -1,33 +1,28 @@
 package hexlet.code.games;
+
 import hexlet.code.Engine;
-import hexlet.code.Greet;
-import java.util.Scanner;
+import hexlet.code.Utils;
 
 public class GCD {
-    public static void game() {
-        String userName = Greet.greeting();
-        Scanner scanner = new Scanner(System.in);
+    static final int MIN_RANDOM = 0;
+    static final int MAX_RANDOM = 150;
+    static final String TASK_GAME = "Find the greatest common divisor of given numbers.";
+    public static void runGame() {
+        String[][] roundsData = new String[Engine.NUM_ROUND][2];
 
-        System.out.println("Find the greatest common divisor of given numbers.");
-
-        int count = 0;
-        while (count < Engine.getNumRound()) {
-            int randomNum1 = Engine.getRandomNum(Engine.getMinRandomNum(), Engine.getMaxRandomNum());
-            int randomNum2 = Engine.getRandomNum(Engine.getMinRandomNum(), Engine.getMaxRandomNum());
-            Engine.getQuestion(randomNum1 + " "  + randomNum2);
-            String answerUser = scanner.next();
-            String answerCorrect = Integer.toString(test(randomNum1, randomNum2));
-
-            if (answerUser.equals(answerCorrect)) {
-                Engine.correct();
-                count++;
-            } else {
-                Engine.wrong(answerUser, answerCorrect, userName);
-                return;
-            }
+        for (int i = 0;  i < Engine.NUM_ROUND; i++) {
+            roundsData[i] = dataGame();
         }
-        Engine.congratulations(userName);
-        scanner.close();
+        Engine.run(roundsData, TASK_GAME);
+    }
+
+    public static String[] dataGame() {
+        int randomNum1 = Utils.generateNumber(MIN_RANDOM, MAX_RANDOM);
+        int randomNum2 = Utils.generateNumber(MIN_RANDOM, MAX_RANDOM);
+        String question = randomNum1 + " "  + randomNum2;
+        String answerCorrect = Integer.toString(test(randomNum1, randomNum2));
+
+        return new String[]{question, answerCorrect};
     }
 
     public static int test(int num1, int num2) {
