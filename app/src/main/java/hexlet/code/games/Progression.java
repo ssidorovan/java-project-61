@@ -33,10 +33,10 @@ public class Progression {
     }
 
 
-    public static int[] getProgression(int firstNum, int stepProgression, int lengthProgression) {
-        int[] arrays = new int[lengthProgression];
+    public static int[] getProgression(int firstNum, int stepOfProgression, int lengthOfProgression) {
+        int[] arrays = new int[lengthOfProgression];
         for (int i = 0; i < arrays.length; i++) {
-            arrays[i] = firstNum + i * stepProgression;
+            arrays[i] = firstNum + i * stepOfProgression;
         }
         return arrays;
     }
