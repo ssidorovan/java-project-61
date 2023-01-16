@@ -21,7 +21,10 @@ public class Progression {
 
 
     public static String[] generateRoundData() {
-        int[] progressionRandom = getRandomProgression();
+        int length = Utils.generateNumber(MIN_LENGTH, MAX_LENGTH);
+        int step = Utils.generateNumber(MIN_NUM, MAX_NUM);
+        int startNum = Utils.generateNumber(MIN_NUM, MAX_NUM);
+        int[] progressionRandom = getProgression(startNum, step, length);
         int elementHidden = elementRandom(progressionRandom);
         String question = progressionWithElementHidden(progressionRandom, elementHidden);
         String answerCorrect = Integer.toString(elementHidden);
@@ -30,14 +33,10 @@ public class Progression {
     }
 
 
-    public static int[] getRandomProgression() {
-
-        int length = Utils.generateNumber(MIN_LENGTH, MAX_LENGTH);
-        int[] arrays = new int[length];
-        int step = Utils.generateNumber(MIN_NUM, MAX_NUM);
-        int startNum = Utils.generateNumber(MIN_NUM, MAX_NUM);
+    public static int[] getProgression(int firstNum, int stepProgression, int lengthProgression) {
+        int[] arrays = new int[lengthProgression];
         for (int i = 0; i < arrays.length; i++) {
-            arrays[i] = startNum + i * step;
+            arrays[i] = firstNum + i * stepProgression;
         }
         return arrays;
     }

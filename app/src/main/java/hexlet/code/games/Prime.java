@@ -22,15 +22,15 @@ public class Prime {
     public static String[] generateRoundData() {
         int randomNum = Utils.generateNumber(MIN_RANDOM, MAX_RANDOM);
         String question = Integer.toString(randomNum);
-        String answerCorrect = test(randomNum);
+        String answerCorrect = isPrime(randomNum) ? "yes" : "no";
 
         return new String[]{question, answerCorrect};
     }
 
 
-    public static String test(int number) {
+    public static boolean isPrime(int number) {
         if (number < 1) {
-            return "no";
+            return false;
         } else {
             int count = 0;
             for (int i = 1; i <= number; i++) {
@@ -38,7 +38,7 @@ public class Prime {
                     count++;
                 }
             }
-            return count == 2 ? "yes" : "no";
+            return count == 2;
         }
     }
 }

@@ -24,7 +24,7 @@ public class Calc {
         int randomNum2 = Utils.generateNumber(MIN_RANDOM, MAX_RANDOM);
         String randomOperator = getRandomOperator();
         String question = randomNum1 + " " + randomOperator + " " + randomNum2;
-        String answerCorrect = test(randomNum1, randomNum2, randomOperator);
+        String answerCorrect = calculate(randomNum1, randomNum2, randomOperator);
 
         return new String[]{question, answerCorrect};
     }
@@ -37,7 +37,7 @@ public class Calc {
     }
 
 
-    public static String test(int num1, int num2, String operator) {
+    public static String calculate(int num1, int num2, String operator) {
         return switch (operator) {
             case "-" -> Integer.toString(num1 - num2);
             case "+" -> Integer.toString(num1 + num2);
