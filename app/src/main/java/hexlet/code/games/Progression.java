@@ -36,7 +36,7 @@ public class Progression {
     public static int[] getProgression(int firstNumber, int stepOfProgression, int lengthOfProgression) {
         int[] arrays = new int[lengthOfProgression];
         for (int i = 0; i < arrays.length; i++) {
-            arrays[i] = firstNumer + i * stepOfProgression;
+            arrays[i] = firstNumber + i * stepOfProgression;
         }
         return arrays;
     }
